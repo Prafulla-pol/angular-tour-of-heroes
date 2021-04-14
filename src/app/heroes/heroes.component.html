@@ -1,9 +1,36 @@
-<!-- UppercasePipe to format the name -->
-<h2>{{ hero.name | uppercase }} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
+<div *ngIf = "selectedHero">
 
-<div>
-  <label for="name">Hero name: </label>
-  <input id="name" [(ngModel)]="hero.name" placeholder="name">
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
+
+  <div>
+    <label for="name">Hero name: </label>
+    <input id="name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
+
 </div>
+
+
+
+<h2>My Heroes</h2>
+<!--
+  The *ngFor is Angular's repeater directive.
+  It repeats the host element for each element in a list.
+
+  AKA Structural directive
+-->
+<ul class="heroes">
+  <li
+    *ngFor = "let hero of heroes"
+    (click) = "onSelect(hero)"
+    [class.selected]="hero === selectedHero"
+  >
+  <!-- Angular's class binding can add and remove a CSS class conditionally -->
+
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
