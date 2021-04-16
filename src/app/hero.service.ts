@@ -31,12 +31,13 @@ export class HeroService {
   getHeros(): Observable<Hero[]> {
     const heros = of(HEROES);
     // of(HEROES) returns an Observable<Hero[]>
-    let i = 0;
-    while(i < 1000000000) {
-      i++;
-    }
     this.messageService.add('HeroService: fetched heroes');
     return heros;
   }
 
+  getHero(id: number): Observable<Hero> {
+    const hero = HEROES.find(h => h.id === id) as Hero;
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(hero);
+  }
 }

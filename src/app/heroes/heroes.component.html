@@ -7,19 +7,27 @@
   AKA Structural directive
 -->
 <ul class="heroes">
-  <li
+  <!-- <li
     *ngFor = "let hero of heroes"
     (click) = "onSelect(hero)"
     [class.selected]="hero === selectedHero"
   >
-  <!-- Angular's class binding can add and remove a CSS class conditionally -->
+  <! Angular's class binding can add and remove a CSS class conditionally
 
     <span class="badge">{{hero.id}}</span> {{hero.name}}
   </li>
+-->
+
+<li *ngFor = "let hero of heroes">
+  <!-- Angular's class binding can add and remove a CSS class conditionally -->
+  <a [routerLink]="['/detail', hero.id]" >
+  <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </a>
+</li>
 </ul>
 
 
-<app-hero-details [hero]="selectedHero"></app-hero-details>
+<!-- <app-hero-details [hero]="selectedHero"></app-hero-details> -->
  <!--
    [hero]="selectedHero" is an Angular property binding.
 
